@@ -22,6 +22,21 @@ describe("Node", function(argument) {
       expect(this.nodeB.isWord).toBe(false);
     }) 
   })
+
+  describe("getLetter", function() {
+    it("returns true if letter finishes a word", function() {
+      this.nodeB.setAsWord(true);
+      expect(this.node.getLetter("b", true)).toEqual(true);
+    })
+
+    it("returns the letter node if letter doesn't finish a word", function() {
+      expect(this.node.getLetter("b")).toEqual(this.nodeB);
+    })
+
+    it("returns undefined if letter is not found", function() {
+      expect(this.node.getLetter("c")).toEqual(undefined);
+    })
+  })
 })
 
 describe("Trie", function() {
@@ -49,6 +64,30 @@ describe("Trie", function() {
 
     it("updates word status of last letter of word", function() {
       expect(this.tree.root.children.h.children.e.children.l.children.l.children.o.isWord).toBe(true)
+    })
+  })
+
+  describe("search", function() {
+    beforeEach(function() {
+      this.tree.addWord("bananas");
+      this.tree.addWord("baracuda");
+    })
+
+    it("returns true if word is in tree", function() {
+      expect(this.tree.search("bananas")).toBe(true);
+      expect(this.tree.search("baracuda")).toBe(true);
+    })
+
+    it("returns false if word is not in tree", function() {
+      expect(this.tree.search("cat")).toBe(false);
+      expect(this.tree.search("banan")).toBe(false);
+      expect(this.tree.search("ba")).toBe(false);
+    })
+
+    it("continues to search even if sub-word is found", function() {
+      this.tree.addWord("ban");
+      expect(this.tree.search("ban")).toBe(true);
+      expect(this.tree.search("bana")).toBe(false);
     })
   })
 })
