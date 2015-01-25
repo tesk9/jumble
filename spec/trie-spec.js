@@ -80,14 +80,17 @@ describe("Trie", function() {
 
     it("returns false if word is not in tree", function() {
       expect(this.tree.search("cat")).toBe(false);
-      expect(this.tree.search("banan")).toBe(false);
-      expect(this.tree.search("ba")).toBe(false);
+      expect(this.tree.search("cannert")).toBe(false);
+      expect(this.tree.search("daq")).toBe(false);
+      expect(this.tree.search('delint')).toBe(false);
+      expect(this.tree.search("b")).toBe(false);
     })
 
     it("continues to search even if sub-word is found", function() {
       this.tree.addWord("ban");
       expect(this.tree.search("ban")).toBe(true);
       expect(this.tree.search("bana")).toBe(false);
+      expect(this.tree.search("bananas")).toBe(true);
     })
   })
 })

@@ -13,7 +13,7 @@ app.use(express.static(__dirname+ '/javascripts'));
 fs.readFile('./text/2of12.txt', function(err, data) {
   if(err) { throw err; }
   var wordList = data.toString();
-  var wordArr = wordList.split("\n");
+  var wordArr = wordList.split("\r\n");
   wordArr.forEach(function(v) {
     trie.addWord(v);
   })
@@ -21,6 +21,14 @@ fs.readFile('./text/2of12.txt', function(err, data) {
 
 app.get('/', function(req, res, next) {
   console.log("rendering index.jade");
+  res.render("index");
+})
+
+app.get('/trie/:word', function(req, res, next) {
+  console.log(trie.search("hello"));
+  console.log(trie.root.children.z);
+  console.log("accessing trie: " + req.params.word);
+  // res.send({answer: trie.search(req.params.word)})
   res.render("index");
 })
 
