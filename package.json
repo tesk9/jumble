@@ -1,0 +1,18 @@
+{
+  "name": "jumble",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "dependencies": {
+    "express": "^4.11.1",
+    "fs": "^0.0.2",
+    "jade": "^1.9.1",
+    "jasmine": "^2.1.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
