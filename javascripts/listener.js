@@ -1,5 +1,11 @@
 $(document).ready(function() {
   letterListener();
+  $(".reset").on('click', function() {
+    $("#ghost-val").text("");
+    $("#message-header").children().remove();
+    $("button.reset").off("click")
+    letterListener();
+  })
 });
 
 var letterListener = function() {

@@ -9,13 +9,16 @@ var app = express();
 app.set('view engine', 'jade');
 
 app.use(express.static(__dirname+ '/javascripts'));
+app.use(express.static(__dirname+ '/style'));
 
 fs.readFile('./text/2of12.txt', function(err, data) {
   if(err) { throw err; }
   var wordList = data.toString();
   var wordArr = wordList.split("\r\n");
   wordArr.forEach(function(v) {
-    trie.addWord(v);
+    if(v.match(/^[a-z]*$/)) {
+      trie.addWord(v);
+    }
   })
 })
 

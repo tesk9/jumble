@@ -17,7 +17,6 @@ module.exports = function() {
   };
 
   Node.prototype.getLetter = function(letter, endInd) {
-    console.log("word over? " + endInd);
     if(this.children[letter] && this.children[letter].isWord && endInd) {
       return true;
     }

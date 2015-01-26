@@ -1,13 +1,10 @@
 var page = (function() {
   var checkMove = function(wordSoFar, player) {
     var switchPlayer = playerConverter[player];
+
     Trie.search(wordSoFar.toLowerCase(), function(result) {
-      // If word has been finished, game is over
-      // If word is no longer possible, game is over
       if(result.answer == true || result.answer == false) {
-        console.log("game over");
-        console.log(switchPlayer + " wins");
-      // Else, other player's turn
+        winPage(switchPlayer, wordSoFar, result.answer);
       } else if(switchPlayer == "player2") {
         // pass current node to player2
         player2.moveHandler(result.answer);
@@ -16,6 +13,18 @@ var page = (function() {
         letterListener();
       }
     });
+  }
+
+  var winPage = function(winner, wordSoFar, result) {
+    $("#message-header").append("<h2>Game Over! " + winner + " wins</h2>");
+    if(result == true){
+      // If word has been finished, game is over
+      $("#message-header").append("<h3>" + wordSoFar + " is a word.</h3>");
+    } else if(result == false) {
+      // If word is no longer possible, game is over
+      $("#message-header").append("<h3>" + wordSoFar +  " is no longer moving towards a word in our dictionary");
+    }
+    $("#message-header").append("<p>Click the JUmBLe header to reset.</p>");
   }
 
   var appendLetter = function(newLetter, player) {
