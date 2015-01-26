@@ -25,11 +25,7 @@ app.get('/', function(req, res, next) {
 })
 
 app.get('/trie/:word', function(req, res, next) {
-  console.log(trie.search("hello"));
-  console.log(trie.root.children.z);
-  console.log("accessing trie: " + req.params.word);
-  // res.send({answer: trie.search(req.params.word)})
-  res.render("index");
+  res.send({answer: trie.search(req.params.word)})
 })
 
 var port = "8081";

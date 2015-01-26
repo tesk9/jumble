@@ -19,7 +19,6 @@ module.exports = function() {
   Node.prototype.getLetter = function(letter, endInd) {
     console.log("word over? " + endInd);
     if(this.children[letter] && this.children[letter].isWord && endInd) {
-      console.log(letter + " is in tree and finishes the word");
       return true;
     }
     return this.children[letter]
@@ -50,17 +49,17 @@ module.exports = function() {
 
     // If the node is the end of a word, return true
     if( nextNode == true ) {
-      console.log("that's the end of the word: " + word)
       return true;
 
     // If the word isn't over:
     } else if(nextNode && ind < word.length - 1) {
-      console.log("checking next letter: " + word[ind+1])
       return this.search(word, nextNode, ind+1)
 
     // If there is no node matching the current node, return false
-    } else {
+    } else if(nextNode == undefined){
       return false;
+    } else {
+      return nextNode;
     }
   };
 
