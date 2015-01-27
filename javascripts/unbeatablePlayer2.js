@@ -41,6 +41,7 @@ var unbeatableplayer2 = (function() {
   var makeBestMove = function(node) {
     var moves = checkForMove(node);
     if(moves.length == 0){
+      console.log("losing move");
       moves = makeLosingMove(node);
     }
     var moveInd = Math.floor(Math.random() * moves.length);
