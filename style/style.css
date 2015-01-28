@@ -1,11 +1,38 @@
+* {
+  background-color: #FFF7ED;
+}
+
+hr {
+  border-color: #A58F72;
+}
+
 .center-text-border {
   width: 100%;
   box-sizing: border-box;
-  border: 2px solid black;
+  border: 2px solid #A58F72;
   text-align: center;
+  margin-top: 25px;
+  min-height: 55px;
+}
+
+p {
+  color: #231E19;
 }
 
 .header {
   display: inline-block;
-  margin-right: 10%;
+  margin-left: 10%;
+  color: #FFF7ED;
+  background-color: #A58F72;
+}
+
+.head {
+  margin-top: -10px;
+  margin-left: -5%;
+  width: 110%;
+  background-color: #A58F72;
+}
+
+#ghost-val {
+  color: #0A01F1;
 }

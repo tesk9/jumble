@@ -7,8 +7,7 @@ var page = (function() {
         winPage(switchPlayer, wordSoFar, result.answer);
       } else if(switchPlayer == "player2") {
         // pass current node to player2
-        // player2.moveHandler(result.answer);
-        unbeatableplayer2.moveHandler(result.answer);
+        player2.moveHandler(result.answer);
       } else if(switchPlayer=="player1") {
         // turn keypress listener back on
         letterListener();
