@@ -2,10 +2,10 @@
   "name": "jumble",
   "version": "1.0.0",
   "description": "",
-  "web": "app.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node app.js"
   },
+  "main": "app.js",
   "dependencies": {
     "express": "^4.11.1",
     "fs": "^0.0.2",
