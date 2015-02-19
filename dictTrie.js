@@ -3,11 +3,13 @@ module.exports = function() {
     this.value = letter || null;
     this.children = {};
     this.isWord = false;
+    this.parent = null;
   };
 
   Node.prototype.addLetter = function(letter) {
     if(!this.children[letter]) {
       this.children[letter] = new Node(letter);
+      this.children[letter].parent = this;
     }
     return this.children[letter];
   };
@@ -51,7 +53,7 @@ module.exports = function() {
       return true;
 
     // If the word isn't over:
-    } else if(nextNode && ind < word.length - 1) {
+    } else if(nextNode && ind < word.length) {
       return this.search(word, nextNode, ind+1)
 
     // If there is no node matching the current node, return false
