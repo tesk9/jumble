@@ -19,8 +19,8 @@ module.exports = function() {
   };
 
   Node.prototype.getLetter = function(letter, endInd) {
-    if(this.children[letter] && this.children[letter].isWord && endInd) {
-      return true;
+    if(this.children[letter] == undefined) {
+      return false;
     }
     return this.children[letter]
   };
@@ -42,25 +42,34 @@ module.exports = function() {
   };
 
   Trie.prototype.search = function(word, node, ind) {
+    var finalNode = this.getDescendents(word, node, ind);
+    if(finalNode.isWord) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
+  Trie.prototype.getDescendents = function(word, node, ind) {
     node = node || this.root;
     ind = ind || 0;
 
     var wordEnd = (ind == word.length - 1) ? true : false;
-    var nextNode = node.getLetter(word[ind], wordEnd);
+    var nextNode = node.getLetter(word[ind], false);
 
     // If the node is the end of a word, return true
-    if( nextNode == true ) {
-      return true;
+    if(nextNode && wordEnd) {
+      return node.getLetter(word[ind], false);
+    }
 
     // If the word isn't over:
-    } else if(nextNode && ind < word.length) {
-      return this.search(word, nextNode, ind+1)
+    else if(nextNode && ind < word.length) {
+      return this.getDescendents(word, nextNode, ind+1)
+    }
 
     // If there is no node matching the current node, return false
-    } else if(nextNode == undefined){
+    else if(!nextNode){
       return false;
-    } else {
-      return nextNode;
     }
   };
 

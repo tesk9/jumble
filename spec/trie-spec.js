@@ -28,17 +28,13 @@ describe("Node", function(argument) {
   });
 
   describe("getLetter", function() {
-    it("returns true if letter finishes a word", function() {
+    it("returns false if letter finishes a word", function() {
       this.nodeB.setAsWord(true);
-      expect(this.node.getLetter("b", true)).toEqual(true);
+      expect(this.node.getLetter("b").value).toEqual("b");
     });
 
-    it("returns the letter node if letter doesn't finish a word", function() {
-      expect(this.node.getLetter("b")).toEqual(this.nodeB);
-    });
-
-    it("returns undefined if letter is not found", function() {
-      expect(this.node.getLetter("c")).toEqual(undefined);
+    it("returns false if letter is not found", function() {
+      expect(this.node.getLetter("c")).toEqual(false);
     });
   });
 });
@@ -95,6 +91,33 @@ describe("Trie", function() {
       expect(this.tree.search("ban")).toBe(true);
       expect(this.tree.search("bana")).toBe(false);
       expect(this.tree.search("bananas")).toBe(true);
+    });
+  });
+
+  describe("getDescendents", function() {
+    beforeEach(function() {
+      this.tree.addWord("bananas");
+      this.tree.addWord("baracuda");
+    });
+
+    it("returns the last node of the word if it is found in tree", function() {
+      expect(this.tree.getDescendents("bananas").value).toBe("s");
+      expect(this.tree.getDescendents("baracuda").value).toBe("a");
+      expect(this.tree.getDescendents("ba").value).toBe("a");
+    });
+
+    it("returns false if word is not in tree", function() {
+      expect(this.tree.getDescendents("cat")).toBe(false);
+      expect(this.tree.getDescendents("cannert")).toBe(false);
+      expect(this.tree.getDescendents("daq")).toBe(false);
+      expect(this.tree.getDescendents('delint')).toBe(false);
+    });
+
+    it("continues to search even if sub-word is found", function() {
+      this.tree.addWord("ban");
+      expect(this.tree.getDescendents("ban").value).toBe("n");
+      expect(this.tree.getDescendents("bana").value).toBe("a");
+      expect(this.tree.getDescendents("bananas").value).toBe("s");
     });
   });
 });
