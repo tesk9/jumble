@@ -12,10 +12,6 @@ describe("Node", function(argument) {
       expect(this.nodeB instanceof trie.Node).toBe(true);
       expect(this.node.children.b).toBe(this.nodeB);
     });
-
-    it("Child node has reference to parent", function() {
-      expect(this.nodeB.parent.value).toBe(this.node.value);
-    });
   });
 
   describe("setAsWord", function() {

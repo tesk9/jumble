@@ -3,13 +3,11 @@ module.exports = function() {
     this.value = letter || null;
     this.children = {};
     this.isWord = false;
-    this.parent = null;
   };
 
   Node.prototype.addLetter = function(letter) {
     if(!this.children[letter]) {
       this.children[letter] = new Node(letter);
-      this.children[letter].parent = this;
     }
     return this.children[letter];
   };
@@ -45,6 +43,8 @@ module.exports = function() {
     var finalNode = this.getDescendents(word, node, ind);
     if(finalNode.isWord) {
       return true;
+    } else if(finalNode) {
+      return finalNode;
     } else {
       return false;
     }
