@@ -8,6 +8,9 @@ var page = (function() {
       } else if(switchPlayer == "player2") {
         // pass current node to player2
         player2.moveHandler(result.answer);
+      } else if(switchPlayer == "unbeatable") {
+        // pass current node to unbeatable player2
+        unbeatable.moveHandler(result.answer);
       } else if(switchPlayer=="player1") {
         // turn keypress listener back on
         letterListener();
@@ -35,7 +38,8 @@ var page = (function() {
     checkMove(wordSoFar, player);
   }
 
-  var playerConverter = {player1: "player2", player2: "player1"}
+  var compPlayer = $(".unbeatable input[name=which-player]:checked").val();
+  var playerConverter = {player1: compPlayer, player2: "player1", unbeatable: "player1"}
 
   return {
     appendLetter: appendLetter

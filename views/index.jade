@@ -2,6 +2,7 @@ doctype html
 html
   head
     title JUmBLe!
+    link(href="style.css" rel="stylesheet")
   body
     div.head
       h1.reset.header JUmBLe!
@@ -19,10 +20,18 @@ html
       p Any letter you play must be building towards a word
       p If a player adds a letter that finishes a word, that player loses
       p To play a letter, press it on your keyboard
-      p To play a new game, click "JUmBLe!"
-  link(href="style.css" rel="stylesheet")
+
+    br
+    div
+      span DIFFICULTY: 
+      form.unbeatable
+        input(type="radio" name="which-player" id="input-player2" value="player2" checked) 
+        label(for="input-player2") Medium level player2
+        input(type="radio" name="which-player" id="input-unbeatable" value="unbeatable") 
+        label(for="input-unbeatable") Hard level player2
   script(src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js")
   script(src="requests.js")
   script(src="page.js")
   script(src="player2.js")
+  script(src="unbeatable.js")
   script(src="listener.js")

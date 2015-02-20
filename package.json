@@ -2,7 +2,6 @@
   "name": "jumble",
   "version": "1.0.0",
   "description": "",
-  "main": "main.js",
   "dependencies": {
     "express": "^4.11.1",
     "fs": "^0.0.2",
@@ -11,8 +10,10 @@
   },
   "devDependencies": {},
   "scripts": {
+    "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "main": "app.js",
   "author": "",
   "license": "ISC"
 }

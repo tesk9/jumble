@@ -36,3 +36,11 @@ p {
 #ghost-val {
   color: #0A01F1;
 }
+
+form.unbeatable {
+  display: inline-block;
+}
+
+form.unbeatable input {
+  margin-left: 20px;
+}

@@ -31,6 +31,6 @@ app.get('/trie/:word', function(req, res, next) {
   res.send({answer: trie.search(req.params.word)})
 })
 
-var port = "8081";
+var port = process.env.PORT || "8081";
 var server = app.listen(port);
 console.log("Application listening at ", port);
