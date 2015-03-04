@@ -1,4 +1,5 @@
 var page = (function() {
+  var playerConverter;
   var checkMove = function(wordSoFar, player) {
     var switchPlayer = playerConverter[player];
 
@@ -9,6 +10,7 @@ var page = (function() {
         // pass current node to player2
         player2.moveHandler(result.answer);
       } else if(switchPlayer == "unbeatable") {
+        console.log("unbeatable, your turn is over");
         // pass current node to unbeatable player2
         unbeatable.moveHandler(result.answer);
       } else if(switchPlayer=="player1") {
@@ -30,16 +32,14 @@ var page = (function() {
     $("#message-header").append("<p>Click the JUmBLe header to reset.</p>");
   }
 
-  var appendLetter = function(newLetter, player) {
+  var appendLetter = function(newLetter, player, playerConv) {
+    playerConverter = playerConv || playerConverter;
     var currentString = $("#ghost-val").text();
     var wordSoFar = currentString + newLetter.toUpperCase();
     $("#ghost-val").text(wordSoFar);
 
     checkMove(wordSoFar, player);
   }
-
-  var compPlayer = $(".unbeatable input[name=which-player]:checked").val();
-  var playerConverter = {player1: compPlayer, player2: "player1", unbeatable: "player1"}
 
   return {
     appendLetter: appendLetter
