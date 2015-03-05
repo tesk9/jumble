@@ -1,5 +1,12 @@
 var page = (function() {
+  var playerConverter = {player1: "player2", player2: "player1", unbeatable: "player1"};
+
+  var updatePlayerConverter = function() {
+    playerConverter.player1 = opponent;
+  };
+
   var checkMove = function(wordSoFar, player) {
+    updatePlayerConverter();
     var switchPlayer = playerConverter[player];
 
     Trie.search(wordSoFar.toLowerCase(), function(result) {
@@ -19,6 +26,7 @@ var page = (function() {
   }
 
   var winPage = function(winner, wordSoFar, result) {
+    $("#message-header").children().remove();
     $("#message-header").append("<h2>Game Over! " + winner + " wins</h2>");
     if(result == true){
       // If word has been finished, game is over
@@ -37,9 +45,6 @@ var page = (function() {
 
     checkMove(wordSoFar, player);
   }
-
-  var compPlayer = $(".unbeatable input[name=which-player]:checked").val();
-  var playerConverter = {player1: compPlayer, player2: "player1", unbeatable: "player1"}
 
   return {
     appendLetter: appendLetter
