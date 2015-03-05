@@ -26,6 +26,7 @@ var page = (function() {
   }
 
   var winPage = function(winner, wordSoFar, result) {
+    $("#message-header").children().remove();
     $("#message-header").append("<h2>Game Over! " + winner + " wins</h2>");
     if(result == true){
       // If word has been finished, game is over

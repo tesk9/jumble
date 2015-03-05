@@ -18,10 +18,10 @@ var unbeatable = (function() {
     var moves = checkForMove(node);
     var bestMoves = [];
 
-    if(moves.length == 0){
-      moves = makeLosingMove(node);
-    } else {
+    if(moves.length){
       moves = makeBestMove(moves);
+    } else {
+      moves = makeLosingMove(node);
     }
 
     var moveInd = Math.floor(Math.random() * moves.length);

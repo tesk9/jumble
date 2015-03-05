@@ -3,16 +3,14 @@ $(document).ready(function() {
   playerChangeHandler();
 
   $(".reset").on('click', function() {
-    $("#ghost-val").text("");
-    $("#message-header").children().remove();
-    $("button.reset").off("click");
-    letterListener();
+    reset();
   });
 
 });
 
 var letterListener = function() {
   var player = "player1";
+  $(this).off("keyup");
   $(this).on("keyup", function(e) {
     var newLetter = String.fromCharCode(e.keyCode);
     if(newLetter.match(/[a-zA-Z]/)) {
@@ -28,4 +26,11 @@ var playerChangeHandler = function() {
     opponent = $(".unbeatable input:checked").val();
   });
 };
+
+var reset = function() {
+  $("#ghost-val").text("");
+  $("#message-header").children().remove();
+  $("button.reset").off("click");
+  letterListener();
+}
 
