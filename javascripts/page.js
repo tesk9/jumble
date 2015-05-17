@@ -23,11 +23,15 @@ var page = (function() {
         letterListener();
       }
     });
-  }
+  };
 
   var winPage = function(winner, wordSoFar, result) {
     $("#message-header").children().remove();
-    $("#message-header").append("<h2>Game Over! " + winner + " wins</h2>");
+    if(winner === "player1") {
+      $("#message-header").append("<h2>Game Over! You won!</h2>");
+    } else {
+      $("#message-header").append("<h2>Game Over! You lost.</h2>");
+    }
     if(result == true){
       // If word has been finished, game is over
       $("#message-header").append("<h3>" + wordSoFar + " is a word.</h3>");
@@ -35,8 +39,7 @@ var page = (function() {
       // If word is no longer possible, game is over
       $("#message-header").append("<h3>" + wordSoFar +  " is no longer moving towards a word in our dictionary");
     }
-    $("#message-header").append("<p>Click the JUmBLe header to reset.</p>");
-  }
+  };
 
   var appendLetter = function(newLetter, player) {
     var currentString = $("#ghost-val").text();
@@ -44,7 +47,7 @@ var page = (function() {
     $("#ghost-val").text(wordSoFar);
 
     checkMove(wordSoFar, player);
-  }
+  };
 
   return {
     appendLetter: appendLetter
