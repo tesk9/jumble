@@ -19,9 +19,13 @@ var unbeatable = (function() {
     var bestMoves = [];
 
     if(moves.length){
-      moves = makeBestMove(moves);
-    } else {
+      var tempMoves = makeBestMove(moves);
+    } 
+
+    if(!moves.length || !tempMoves.length) {
       moves = makeLosingMove(node);
+    } else {
+      moves = tempMoves;
     }
 
     var moveInd = Math.floor(Math.random() * moves.length);
@@ -45,6 +49,7 @@ var unbeatable = (function() {
   };
 
   var searchOptions = function(move, compTurn) {
+
     // when compTurn is true, we're iterating over the computer's options
     var isGoodMove = true;
     for(var letter in move.children) {

@@ -51,5 +51,5 @@ var page = (function() {
 
   return {
     appendLetter: appendLetter
-  }
+  };
 })();

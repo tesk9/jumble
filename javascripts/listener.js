@@ -30,7 +30,6 @@ var playerChangeHandler = function() {
 var reset = function() {
   $("#ghost-val").text("");
   $("#message-header").children().remove();
-  $("button.reset").off("click");
   letterListener();
-}
+};
 
